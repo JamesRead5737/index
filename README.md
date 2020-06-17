@@ -8,3 +8,6 @@ Grant permissions to crawler user with following command:
 
 GRANT ALL ON indexes.* to crawler@localhost;
 
+Compile indexer with command:
+
+gcc -o indexer indexer.c -g -I/usr/include/mysql -lmysqlclient -lm
