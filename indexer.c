@@ -57,8 +57,22 @@ int main(int argc, char **argv)
 		if (mysql_real_query(con, sql, (unsigned long)strlen(sql)))
 		{
 			fprintf(stderr, "mysql_real_query sql: %s %s\n", sql, mysql_error(con));
-			mysql_close(con);
-			exit(1);
+			if (mysql_errno(con) == CR_SERVER_GONE_ERROR)
+			{
+				mysql_close(con);
+				if (mysql_real_connect(con, "localhost", "crawler", "1q2w3e4r", "indexes", 0, NULL, 0) == NULL)
+			        {
+                			fprintf(stderr, "%s\n", mysql_error(con));
+                			mysql_close(con);
+                			exit(1);
+        			}
+
+			}
+			else
+			{
+				mysql_close(con);
+				exit(1);
+			}
 		}
 
 		MYSQL_RES *result = mysql_use_result(con);
