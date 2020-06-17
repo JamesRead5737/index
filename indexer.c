@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 
 		if (mysql_real_query(con, sql, (unsigned long)strlen(sql)))
 		{
-			fprintf(stderr, "%s\n", mysql_error(con));
+			fprintf(stderr, "mysql_real_query sql: %s %s\n", sql, mysql_error(con));
 			mysql_close(con);
 			exit(1);
 		}
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 	
 		if(result == NULL)
 		{
-			fprintf(stderr, "%s\n", mysql_error(con));
+			fprintf(stderr, "mysql_use_result %s\n", mysql_error(con));
 			mysql_close(con);
 			exit(1);
 		}
@@ -167,7 +167,7 @@ int main(int argc, char **argv)
                 			}
 					if (mysql_real_query(con02, sql02, (unsigned long)strlen(sql02)))
 					{
-						fprintf(stderr, "%s\n", mysql_error(con02));
+						fprintf(stderr, "mysql_real_query sql: %s %s\n", sql02, mysql_error(con02));
 					}
 					free(sql02);
 				}
@@ -186,7 +186,7 @@ int main(int argc, char **argv)
 			}
 			if (mysql_real_query(con02, sql02, (unsigned long)strlen(sql02)))
 			{
-				fprintf(stderr, "%s\n", mysql_error(con02));
+				fprintf(stderr, "mysql_real_query sql: %s %s\n", sql02, mysql_error(con02));
 			}
 			free(sql02);
 		}
