@@ -102,7 +102,7 @@ int main(int argc, char **argv)
                	 		{
                	 		}
 
-				int size = strlen(token) + strlen("CREATE TABLE IF NOT EXISTS `` (`id` int NOT NULL, PRIMARY KEY (`id`))") + 1;
+				int size = strlen(escaped_token) + strlen("CREATE TABLE IF NOT EXISTS `` (`id` int NOT NULL, PRIMARY KEY (`id`))") + 1;
 				char *sql02 = (char *) malloc (size);
 				int ret = snprintf(sql02, size, "CREATE TABLE IF NOT EXISTS `%s` (`id` int NOT NULL, PRIMARY KEY (`id`))", escaped_token);
 				if (ret >= 0 && ret <= size)
@@ -123,7 +123,7 @@ int main(int argc, char **argv)
 				free(sql02);
 
 				int nDigits = floor(log10(abs(id))) + 1;
-				size = strlen(token) + strlen("INSERT IGNORE INTO `` (id) VALUES ()") + nDigits + 1;
+				size = strlen(escaped_token) + strlen("INSERT IGNORE INTO `` (id) VALUES ()") + nDigits + 1;
 				sql02 = (char *) malloc (size);
 				ret = snprintf(sql02, size, "INSERT IGNORE INTO `%s` (id) VALUES (%d)", escaped_token, id);
 				if (ret >= 0 && ret <= size)
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
                 			{
                 			}
 	
-					int size = strlen(token) + strlen("CREATE TABLE IF NOT EXISTS `` (`id` int NOT NULL, PRIMARY KEY (`id`))") + 1;
+					int size = strlen(escaped_token) + strlen("CREATE TABLE IF NOT EXISTS `` (`id` int NOT NULL, PRIMARY KEY (`id`))") + 1;
 					char *sql02 = (char *) malloc (size);
 					int ret = snprintf(sql02, size, "CREATE TABLE IF NOT EXISTS `%s` (`id` int NOT NULL, PRIMARY KEY (`id`))", escaped_token);
 					if (ret >= 0 && ret <= size)
@@ -169,7 +169,7 @@ int main(int argc, char **argv)
 					free(sql02);
 
 					int nDigits = floor(log10(abs(id))) + 1;
-					size = strlen(token) + strlen("INSERT IGNORE INTO `` (id) VALUES ()") + nDigits + 1;
+					size = strlen(escaped_token) + strlen("INSERT IGNORE INTO `` (id) VALUES ()") + nDigits + 1;
 					sql02 = (char *) malloc (size);
 					ret = snprintf(sql02, size, "INSERT IGNORE INTO `%s` (id) VALUES (%d)", escaped_token, id);
 					if (ret >= 0 && ret <= size)
